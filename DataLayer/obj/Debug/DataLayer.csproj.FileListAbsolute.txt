@@ -25,7 +25,6 @@ C:\Users\Mahmood\Desktop\MyComputerco.ir\MyEshop\DataLayer\bin\Debug\EntityFrame
 C:\Users\Mahmood\Desktop\MyComputerco.ir\MyEshop\DataLayer\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Mahmood\Desktop\MyComputerco.ir\MyEshop\DataLayer\bin\Debug\EntityFramework.xml
 C:\Users\Mahmood\Desktop\MyComputerco.ir\MyEshop\DataLayer\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Mahmood\Desktop\MyComputerco.ir\MyEshop\DataLayer\obj\Debug\DataLayer.csprojAssemblyReference.cache
 C:\Users\Mahmood\Desktop\MyComputerco.ir\MyEshop\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
 C:\Users\Mahmood\Desktop\MyComputerco.ir\MyEshop\DataLayer\obj\Debug\DataLayer.csproj.CopyComplete
 C:\Users\Mahmood\Desktop\MyComputerco.ir\MyEshop\DataLayer\obj\Debug\DataLayer.dll

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DataLayer.ViewModels
 {
     public class RegisterViewModel
@@ -69,8 +70,8 @@ namespace DataLayer.ViewModels
         [Display(Name = "کلمه عبور فعلی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "کلمه های عبور مغایرت دارند")]
         public string OldPassword { get; set; }
+
         [Display(Name = "کلمه عبور جدید")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [DataType(DataType.Password)]
