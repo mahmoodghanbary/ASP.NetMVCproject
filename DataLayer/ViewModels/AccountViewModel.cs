@@ -9,9 +9,9 @@ namespace DataLayer.ViewModels
 {
     public class RegisterViewModel
     {
-        [Display(Name = "نام کاربری")]
+        [Display(Name = "نام و نام خانوادگی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public string UserName { get; set; }
+        public string UserName { get; set; } 
 
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -30,4 +30,63 @@ namespace DataLayer.ViewModels
         public string RePassword { get; set; }
 
     }
+    public class LoginViewModel
+    {
+        [Display(Name ="ایمیل")]
+        [Required(ErrorMessage ="لطفا {0} را وارد کنید")]
+        [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نمی باشد")]
+        public string Email { get; set; }
+        [Display(Name ="کلمه عبور")]
+        [Required(ErrorMessage ="لطفا {0} را وارد کنید")]
+        [DataType(DataType.Password)]        
+        public string Password { get; set; }
+        [Display(Name = "مرا به خاطر بسپار")]
+        public bool RememberMe { get; set; }
+    }
+    public class ForgotPasswordViewModel
+    {
+        [Display(Name = "ایمیل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نمی باشد")]
+        public string Email { get; set; }
+    }
+
+    public class RecoveryPasswordViewModel
+    {
+        [Display(Name = "کلمه عبور جدید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Display(Name = "تکرار کلمه عبور جدید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "کلمه های عبور مغایرت دارند")]
+        public string RePassword { get; set; }
+    }
+    public class ChanagePasswordViewModel
+    {
+        [Display(Name = "کلمه عبور فعلی")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "کلمه های عبور مغایرت دارند")]
+        public string OldPassword { get; set; }
+        [Display(Name = "کلمه عبور جدید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Display(Name = "تکرار کلمه عبور جدید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "کلمه های عبور مغایرت دارند")]
+        public string RePassword { get; set; }
+    }
+
+
+
+
+
+
+
 }
