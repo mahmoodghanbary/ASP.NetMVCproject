@@ -10,7 +10,7 @@ using DataLayer;
 
 namespace MyEshop.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "admin")]
+    
     public class UsersController : Controller
     {
         private MyComputerEshop_DBEntities db = new MyComputerEshop_DBEntities();
