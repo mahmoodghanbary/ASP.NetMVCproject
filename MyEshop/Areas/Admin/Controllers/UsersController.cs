@@ -6,14 +6,15 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using DataLayer;
 
 namespace MyEshop.Areas.Admin.Controllers
 {
-    
+    //[Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
-        private MyComputerEshop_DBEntities db = new MyComputerEshop_DBEntities();
+        private MyEshop_DBEntities db = new MyEshop_DBEntities();
 
         // GET: Admin/Users
         public ActionResult Index()
@@ -40,25 +41,29 @@ namespace MyEshop.Areas.Admin.Controllers
         // GET: Admin/Users/Create
         public ActionResult Create()
         {
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleTitile");
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleTitle");
             return View();
         }
 
         // POST: Admin/Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,RoleID,UserName,Email,Password,ActiveCode,IsActive,RegisterDate")] Users users)
         {
             if (ModelState.IsValid)
             {
+                users.RegisterDate=DateTime.Now;
+                users.ActiveCode = Guid.NewGuid().ToString();
+                users.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(users.Password, "MD5");
+
                 db.Users.Add(users);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleTitile", users.RoleID);
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleTitle", users.RoleID);
             return View(users);
         }
 
@@ -74,13 +79,13 @@ namespace MyEshop.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleTitile", users.RoleID);
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleTitle", users.RoleID);
             return View(users);
         }
 
         // POST: Admin/Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserID,RoleID,UserName,Email,Password,ActiveCode,IsActive,RegisterDate")] Users users)
@@ -91,7 +96,7 @@ namespace MyEshop.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleTitile", users.RoleID);
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleTitle", users.RoleID);
             return View(users);
         }
 

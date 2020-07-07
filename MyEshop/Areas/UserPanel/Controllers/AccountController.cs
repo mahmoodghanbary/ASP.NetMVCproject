@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using DataLayer;
 using DataLayer.ViewModels;
-using System.Web.Security;
 
 namespace MyEshop.Areas.UserPanel.Controllers
 {
     public class AccountController : Controller
     {
-        MyComputerEshop_DBEntities db = new MyComputerEshop_DBEntities();
+        MyEshop_DBEntities db=new MyEshop_DBEntities();
         // GET: UserPanel/Account
-        public ActionResult ChanagePassword()
+        public ActionResult ChangePassword()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult ChanagePassword(ChanagePasswordViewModel change)
+        public ActionResult ChangePassword(ChangePasswordViewModel change)
         {
             if (ModelState.IsValid)
             {
@@ -36,10 +36,9 @@ namespace MyEshop.Areas.UserPanel.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("OldPassword", "کلمه عبور فعلی درست نمی باشد");
+                    ModelState.AddModelError("OldPassword","کلمه عبور فعلی درست نمی باشد");
                 }
             }
-
             return View();
         }
     }

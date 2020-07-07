@@ -13,10 +13,10 @@ namespace DataLayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MyComputerEshop_DBEntities : DbContext
+    public partial class MyEshop_DBEntities : DbContext
     {
-        public MyComputerEshop_DBEntities()
-            : base("name=MyComputerEshop_DBEntities")
+        public MyEshop_DBEntities()
+            : base("name=MyEshop_DBEntities")
         {
         }
     
@@ -25,7 +25,19 @@ namespace DataLayer
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Features> Features { get; set; }
+        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Prodct_Selected_Groups> Prodct_Selected_Groups { get; set; }
+        public virtual DbSet<Product_Comments> Product_Comments { get; set; }
+        public virtual DbSet<Product_Features> Product_Features { get; set; }
+        public virtual DbSet<Product_Galleries> Product_Galleries { get; set; }
+        public virtual DbSet<Product_Groups> Product_Groups { get; set; }
+        public virtual DbSet<Product_Tags> Product_Tags { get; set; }
+        public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<SiteVisit> SiteVisit { get; set; }
+        public virtual DbSet<Slider> Slider { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }

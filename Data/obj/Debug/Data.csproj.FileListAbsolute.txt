@@ -1,0 +1,11 @@
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\bin\Debug\Data.dll.config
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\bin\Debug\Data.dll
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\bin\Debug\Data.pdb
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\bin\Debug\EntityFramework.dll
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\bin\Debug\EntityFramework.xml
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\obj\Debug\Data.csproj.CopyComplete
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\obj\Debug\Data.dll
+C:\Users\Mahmood\Desktop\Github Version\ASP.NetMVCproject\Data\obj\Debug\Data.pdb

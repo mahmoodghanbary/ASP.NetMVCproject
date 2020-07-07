@@ -21,7 +21,7 @@ namespace DataLayer
         }
     
         public int RoleID { get; set; }
-        public string RoleTitile { get; set; }
+        public string RoleTitle { get; set; }
         public string RoleName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

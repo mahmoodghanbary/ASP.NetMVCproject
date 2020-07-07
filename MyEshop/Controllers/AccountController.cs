@@ -6,13 +6,12 @@ using System.Web.Mvc;
 using DataLayer;
 using DataLayer.ViewModels;
 using System.Web.Security;
-using MyEshop;
 
 namespace MyEshop.Controllers
 {
     public class AccountController : Controller
     {
-        MyComputerEshop_DBEntities db =new MyComputerEshop_DBEntities();
+        MyEshop_DBEntities db = new MyEshop_DBEntities();
         // GET: Account
         [Route("Register")]
         public ActionResult Register()
@@ -29,10 +28,10 @@ namespace MyEshop.Controllers
             {
                 if (!db.Users.Any(u => u.Email == register.Email.Trim().ToLower()))
                 {
-                    Users user=new Users()
+                    Users user = new Users()
                     {
                         Email = register.Email.Trim().ToLower(),
-                        Password = FormsAuthentication.HashPasswordForStoringInConfigFile(register.Password,"MD5"),
+                        Password = FormsAuthentication.HashPasswordForStoringInConfigFile(register.Password, "MD5"),
                         ActiveCode = Guid.NewGuid().ToString(),
                         IsActive = false,
                         RegisterDate = DateTime.Now,
@@ -46,35 +45,37 @@ namespace MyEshop.Controllers
                     string body = PartialToStringClass.RenderPartialView("ManageEmails", "ActiviationEmail", user);
                     SendEmail.Send(user.Email, "ایمیل فعالسازی", body);
                     //End Send Active Email
+
                     return View("SuccessRegister", user);
                 }
                 else
                 {
-                    ModelState.AddModelError("Email",";کاربری با این ایمیل قبلا ثبت نام کرده است");
+                    ModelState.AddModelError("Email", "ایمیل وارد شده تکراری است");
                 }
             }
 
             return View(register);
         }
+
         [Route("Login")]
         public ActionResult Login()
         {
             return View();
-        } 
+        }
+
         [HttpPost]
         [Route("Login")]
-        public ActionResult Login(LoginViewModel login, string ReturnUrl="/")
+        public ActionResult Login(LoginViewModel login,string ReturnUrl="/")
         {
             if (ModelState.IsValid)
             {
                 string hashPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(login.Password, "MD5");
                 var user = db.Users.SingleOrDefault(u => u.Email == login.Email && u.Password == hashPassword);
-                
                 if (user != null)
                 {
                     if (user.IsActive)
                     {
-                        FormsAuthentication.SetAuthCookie(user.UserName, login.RememberMe);
+                        FormsAuthentication.SetAuthCookie(user.UserName,login.RememberMe);
                         return Redirect(ReturnUrl);
                     }
                     else
@@ -87,8 +88,8 @@ namespace MyEshop.Controllers
                     ModelState.AddModelError("Email", "کاربری با اطلاعات وارد شده یافت نشد");
                 }
             }
-          
-            return View();
+
+            return View(login);
         }
         public ActionResult ActiveUser(string id)
         {
@@ -97,22 +98,26 @@ namespace MyEshop.Controllers
             {
                 return HttpNotFound();
             }
+
             user.IsActive = true;
             user.ActiveCode = Guid.NewGuid().ToString();
             db.SaveChanges();
             ViewBag.UserName = user.UserName;
             return View();
         }
+
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
             return Redirect("/");
         }
+
         [Route("ForgotPassword")]
         public ActionResult ForgotPassword()
         {
             return View();
         }
+
 
         [Route("ForgotPassword")]
         [HttpPost]
@@ -127,7 +132,7 @@ namespace MyEshop.Controllers
                     {
                         string bodyEmail =
                             PartialToStringClass.RenderPartialView("ManageEmails", "RecoveryPassword", user);
-                        SendEmail.Send(user.Email, "بازیابی کلمه عبور", bodyEmail);
+                        SendEmail.Send(user.Email,"بازیابی کلمه عبور",bodyEmail);
                         return View("SuccesForgotPassword", user);
                     }
                     else
@@ -136,8 +141,8 @@ namespace MyEshop.Controllers
                     }
                 }
                 else
-                { 
-                    ModelState.AddModelError("Email", "کاربری یافت نشد");
+                {
+                    ModelState.AddModelError("Email","کاربری یافت نشد");
                 }
             }
             return View();
@@ -147,8 +152,9 @@ namespace MyEshop.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult RecoveryPassword(string id, RecoveryPasswordViewModel recovery)
+        public ActionResult RecoveryPassword(string id,RecoveryPasswordViewModel recovery)
         {
             if (ModelState.IsValid)
             {
@@ -165,6 +171,5 @@ namespace MyEshop.Controllers
             }
             return View();
         }
-    
     }
 }

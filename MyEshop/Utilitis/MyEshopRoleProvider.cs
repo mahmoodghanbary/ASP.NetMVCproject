@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
-using System.Web.Mvc;
 using System.Web.Security;
 using DataLayer;
 
@@ -53,10 +49,10 @@ namespace MyEshop.Utilities
 
         public override string[] GetRolesForUser(string username)
         {
-            using (MyComputerEshop_DBEntities db = new MyComputerEshop_DBEntities())
+            using (MyEshop_DBEntities db=new MyEshop_DBEntities())
             {
                 return db.Users.Where(u => u.UserName == username).Select(u => u.Roles.RoleName).ToArray();
-            } 
+            }
         }
 
         public override string[] GetUsersInRole(string roleName)
